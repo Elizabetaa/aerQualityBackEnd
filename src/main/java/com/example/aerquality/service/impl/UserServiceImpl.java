@@ -1,6 +1,7 @@
 package com.example.aerquality.service.impl;
 
 import com.example.aerquality.model.CurrentUser;
+import com.example.aerquality.model.dto.EditProfileDto;
 import com.example.aerquality.model.dto.UserDto;
 import com.example.aerquality.model.entity.CourseEntity;
 import com.example.aerquality.model.entity.UserEntity;
@@ -88,6 +89,19 @@ public class UserServiceImpl implements UserService {
             return;
         }
         this.userRepository.save(new UserEntity("Jhon", "Doe", "jhonDoe@mail.com","111111","admin"));
+    }
+
+    @Override
+    public void editUserInfo(EditProfileDto userDto) {
+        UserEntity byEmail = this.userRepository.findByEmail(currentUser.getEmail());
+        if (!userDto.getOldPassword().equals(byEmail.getPassword())){
+            throw new IllegalArgumentException("Incorrect Password");
+        }
+        byEmail.setFirstName(userDto.getFirstName());
+        byEmail.setLastName(userDto.getLastName());
+        byEmail.setPassword(userDto.getNewPassword());
+        this.userRepository.save(byEmail);
+
     }
 
 }

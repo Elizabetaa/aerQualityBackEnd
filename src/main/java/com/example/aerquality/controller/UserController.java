@@ -1,5 +1,6 @@
 package com.example.aerquality.controller;
 
+import com.example.aerquality.model.dto.EditProfileDto;
 import com.example.aerquality.model.dto.UserDto;
 import com.example.aerquality.model.entity.CourseEntity;
 import com.example.aerquality.model.entity.UserEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
@@ -25,12 +27,14 @@ public class UserController {
         this.userService = userService;
         this.modelMapper = modelMapper;
     }
+
     @PostMapping("/users/login")
     private UserEntity loginUser(@RequestBody String user) {
         UserDto userDto = this.gson.fromJson(user, UserDto.class);
         this.userService.login(userDto);
         return this.userService.getCurrentUser();
     }
+
     @PostMapping("/users/register")
     private void registerUser(@RequestBody String user) {
         UserDto userDto = this.gson.fromJson(user, UserDto.class);
@@ -50,13 +54,19 @@ public class UserController {
     }
 
     @RequestMapping("/users/profile")
-    private UserEntity profile(){
+    private UserEntity profile() {
         return this.userService.getCurrentUser();
     }
 
     @PostMapping("/users/logout")
-    private UserEntity logout(){
+    private UserEntity logout() {
         this.userService.logout();
         return null;
+    }
+    @PostMapping("/users/editProfile")
+    private UserEntity editProfile(@RequestBody String user) {
+        EditProfileDto userDto = this.gson.fromJson(user, EditProfileDto.class);
+        this.userService.editUserInfo(userDto);
+        return this.userService.getCurrentUser();
     }
 }

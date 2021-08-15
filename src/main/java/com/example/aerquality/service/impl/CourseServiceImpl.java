@@ -57,6 +57,7 @@ public class CourseServiceImpl implements CourseService {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse("2021-11-21", df);
 
+        LocalDate dateInPast = LocalDate.parse("2021-02-21", df);
         this.courseRepository.save(new CourseEntity(
                 "\n" +
                         "Art Gallery “Vladimir Dimitrov – Maystora” – town of Kyustendil",
@@ -71,7 +72,7 @@ public class CourseServiceImpl implements CourseService {
                 date
         ));
         this.courseRepository.save(new CourseEntity(
-                "The Art & Science of Figure Drawing: GESTURE",
+                "The Art & Science",
                 8,
                 "The Art Gallery “Vladimir Dimitrov – Maystora” in Kyustendil was established in 1972 in honor of the 90th anniversary of the renowned artist. The building occupies an area of 4,200 square meters and has seven exposition halls with natural upper lighting.\n" +
                         "Vladimir Dimitrov – Maystora (The Master) (1882 – 1960) is one of the most renowned Bulgarian artists. Its specific style can not be mistaken – his paintings are exceptionally impressive with their vivid colors and unique painting style.\n" +
@@ -80,7 +81,7 @@ public class CourseServiceImpl implements CourseService {
                         "The gallery is often a host to various cultural events – concerts, recitals, book premiers, contests, artistic meetings, etc.\n" +
                         "Visitors of the Art Gallery “Vladimir Dimitrov – Maystora” can purchase postcards, books and catalogues containing reproductions of the most emblematic works of the artist.",
                 "https://img-c.udemycdn.com/course/240x135/1693410_733a.jpg",
-                date
+                dateInPast
         ));
         this.courseRepository.save(new CourseEntity(
                 "Learn to Paint With Impact",

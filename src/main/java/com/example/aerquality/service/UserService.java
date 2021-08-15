@@ -1,6 +1,7 @@
 package com.example.aerquality.service;
 
 
+import com.example.aerquality.model.dto.EditProfileDto;
 import com.example.aerquality.model.dto.UserDto;
 import com.example.aerquality.model.entity.CourseEntity;
 import com.example.aerquality.model.entity.UserEntity;
@@ -23,4 +24,6 @@ public interface UserService {
     void logout();
 
     void initUser();
+
+    void editUserInfo(EditProfileDto userDto);
 }
